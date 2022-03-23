@@ -5,6 +5,7 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from '@angular/material';
 
 import { UserService } from '../../services/user.service';
+import { User } from 'src/app/User';
 
 @Component({
   selector: 'exads-view-users',
@@ -15,7 +16,7 @@ import { UserService } from '../../services/user.service';
 export class ViewUsersComponent implements OnInit, AfterViewInit {
   pageSize: number = 20;
   currentPage = 0;
-  dataSource: any = [];
+  dataSource: MatTableDataSource<User>;
   displayedColumns: string[] = ['username', 'Full Name', 'email', 'status_id', 'created_date', 'edit'];
 
   @ViewChild(MatSort, { static: false }) sort: MatSort;
@@ -44,16 +45,15 @@ export class ViewUsersComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    if (this.dataSource) {
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    }
   }
 
   /** Announce the change in sort state for assistive technology. */
   announceSortChange(sortState: Sort) {
-    console.log(this.dataSource.paginator);
-    
     this.dataSource.sort = this.sort;
-
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {

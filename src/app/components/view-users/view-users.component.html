@@ -1,6 +1,10 @@
-<mat-progress-bar mode="indeterminate" *ngIf="!dataSource.filteredData"></mat-progress-bar>
+<mat-progress-bar mode="indeterminate" *ngIf="!dataSource"></mat-progress-bar>
 
 <div class="mat-elevation-z8" *ngIf="dataSource.filteredData">
+  <button [routerLink]="'/users/create'" mat-raised-button class="create" color="accent">
+      <mat-icon>person_add</mat-icon>
+      Create User
+  </button>
   <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
 
       <!--- Note that these columns can be defined in any order.
@@ -53,9 +57,11 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-
-  <mat-paginator [pageSize]="20"
+    <mat-paginator
+      [pageSize]="20"
       [pageSizeOptions]="[5, 10, 20, 50]"
-      aria-label="Select page">
-  </mat-paginator>
+      [length]="dataSource"
+      showFirstLastButtons
+    >
+    </mat-paginator>
 </div>
