@@ -1,0 +1,14 @@
+<div class="container-fluid">
+    <mat-toolbar color="primary">
+        <a routerLink="/"><span><img src="../../assets/img/exads.png" height="50px" id="logo" alt="Logo"></span></a>
+        <span class="example-spacer"></span>
+            <button *ngIf="!hasRoute('/users')" [routerLink]="'/users'" mat-raised-button color="warn" class="btnFab" aria-label="Example icon button with a bookmark icon">
+                <mat-icon>edit</mat-icon>
+                View Users
+            </button>
+            <button *ngIf="hasRoute('/users')" [routerLink]="'/users/create'" mat-raised-button color="warn" class="btnFab" aria-label="Example icon button with a bookmark icon">
+                <mat-icon>person_add</mat-icon>
+                Create User
+            </button>
+    </mat-toolbar>
+</div>

@@ -1,0 +1,27 @@
+table {
+    width: 100%;
+}
+
+.active {
+  color: green;
+}
+
+.inactive {
+  color: red;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+mat-spinner {
+  margin: 0 auto;
+}
+
+.btnFab {
+  position: absolute;
+  right:    0;
+  bottom:   0;
+  margin-right: 50px;
+  margin-bottom: 32px;
+}
